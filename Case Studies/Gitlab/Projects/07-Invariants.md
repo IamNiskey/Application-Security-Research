@@ -4,7 +4,7 @@
 
 Invariants are properties of a system that must remain true regardless of the workflow being executed. Unlike business rules, which govern how users interact with the application, invariants define the fundamental truths that preserve the consistency and integrity of GitLab Projects.
 
-Every workflow—whether creating a project, adding members, transferring ownership, changing visibility, or deleting a project—must preserve these invariants.
+Every workflow, whether creating a project, adding members, transferring ownership, changing visibility, or deleting a project, must preserve these invariants.
 
 From an application security perspective, violations of invariants often indicate authorization flaws, business logic vulnerabilities, race conditions, or data integrity issues.
 
