@@ -244,7 +244,7 @@ Test Ideas
 
 Expected Result
 
-Authorization behavior is identical across interfaces. :contentReference[oaicite:0]{index=0}
+Authorization behavior is identical across interfaces.
 
 ---
 
