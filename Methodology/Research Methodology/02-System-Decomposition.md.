@@ -1,0 +1,297 @@
+# System Decomposition
+
+## Introduction
+
+Modern web applications are complex systems composed of many interconnected components. Attempting to understand or test an entire application simultaneously is inefficient and often leads to incomplete analysis.
+
+System decomposition is the process of breaking a large application into smaller, independent components that can be researched, modeled, and tested individually before analyzing their interactions.
+
+From an application security perspective, decomposition transforms an overwhelming target into a collection of manageable research units.
+
+---
+
+# Why Decompose?
+
+Large applications may contain hundreds of features, thousands of endpoints, and dozens of user workflows.
+
+Instead of treating the application as a single target:
+
+```
+Application
+
+↓
+
+Testing
+```
+
+We decompose it into smaller systems:
+
+```
+Application
+
+├── Authentication
+
+├── Organizations
+
+├── Projects
+
+├── Billing
+
+├── Notifications
+
+├── Search
+
+├── Administration
+
+└── Integrations
+```
+
+Each component becomes its own research project.
+
+---
+
+# Objectives
+
+System decomposition aims to:
+
+- Reduce complexity.
+- Define clear research boundaries.
+- Identify relationships between components.
+- Enable parallel analysis.
+- Improve testing coverage.
+- Produce reusable documentation.
+
+---
+
+# Step 1 — Identify Major Domains
+
+Begin by identifying the application's highest-level business domains.
+
+Examples
+
+SaaS Platform
+
+- Authentication
+- User Management
+- Organizations
+- Billing
+- Notifications
+- Reporting
+
+Developer Platform
+
+- Projects
+- Repositories
+- Merge Requests
+- Pipelines
+- Packages
+- Security
+
+Marketplace
+
+- Products
+- Cart
+- Checkout
+- Payments
+- Orders
+- Shipping
+
+These domains become the first level of decomposition.
+
+---
+
+# Step 2 — Identify Subsystems
+
+Each domain is then divided into smaller subsystems.
+
+Example
+
+```
+Projects
+
+├── Creation
+
+├── Members
+
+├── Repository
+
+├── Settings
+
+├── Visibility
+
+├── Transfer
+
+├── Archive
+
+└── Deletion
+```
+
+Each subsystem should have a clearly defined responsibility.
+
+---
+
+# Step 3 — Identify Objects
+
+Within each subsystem, identify the primary business objects.
+
+Example
+
+Project
+
+- Repository
+- Issue
+- Merge Request
+- Pipeline
+- Member
+- Variable
+- Release
+
+For each object, document:
+
+- Purpose
+- Owner
+- Relationships
+- Lifecycle
+- Security boundary
+
+---
+
+# Step 4 — Identify Relationships
+
+Objects rarely exist independently.
+
+Document relationships such as:
+
+```
+Namespace
+
+│
+
+▼
+
+Project
+
+├── Repository
+
+├── Members
+
+├── Issues
+
+├── Pipelines
+
+└── Releases
+```
+
+Questions to answer:
+
+- Who owns this object?
+- What depends on it?
+- What inherits from it?
+- What references it?
+
+---
+
+# Step 5 — Define Research Units
+
+Each subsystem becomes a self-contained research unit.
+
+Example
+
+Project Members
+
+↓
+
+Overview
+
+↓
+
+Business Purpose
+
+↓
+
+Actors
+
+↓
+
+Workflow
+
+↓
+
+Business Rules
+
+↓
+
+Invariants
+
+↓
+
+State Machine
+
+↓
+
+Trust Boundaries
+
+↓
+
+Attack Surface
+
+↓
+
+Security Tests
+
+This allows every subsystem to be analyzed using the same methodology.
+
+---
+
+# Benefits
+
+System decomposition provides:
+
+- Smaller research scope.
+- Improved architectural understanding.
+- Better documentation.
+- Higher testing accuracy.
+- Easier collaboration.
+- Reusable research artifacts.
+
+---
+
+# Security Perspective
+
+Security vulnerabilities often arise at the boundaries between components rather than within a single component.
+
+Examples include:
+
+- Authentication → Projects
+- Organizations → Billing
+- Members → Permissions
+- Repositories → CI/CD
+- Projects → Integrations
+
+Studying each component independently makes these interactions easier to identify and evaluate.
+
+---
+
+# Researcher's Notes
+
+## Observation 1
+
+Large applications should never be approached as a single attack surface.
+
+## Observation 2
+
+Component boundaries often correspond to security boundaries.
+
+## Observation 3
+
+Interactions between components are frequently richer sources of business logic vulnerabilities than the individual components themselves.
+
+---
+
+# Key Takeaways
+
+- Decompose the application before beginning detailed analysis.
+- Treat each subsystem as an independent research target.
+- Document objects, relationships, and responsibilities.
+- Analyze component interactions after understanding each component individually.
+- Use the same research methodology consistently across every subsystem.
