@@ -250,7 +250,7 @@ Authorization is not a single rule. It appears repeatedly across creation, membe
 
 ## Observation 3
 
-Several business rules depend on shared state—for example, project ownership, membership, namespace configuration, and visibility settings. These shared states should be analyzed later for race conditions and consistency issues.
+Several business rules depend on shared state for example, project ownership, membership, namespace configuration, and visibility settings. These shared states should be analyzed later for race conditions and consistency issues.
 
 ---
 
